@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,6 +25,8 @@ public class PlayerController : MonoBehaviour
     private float currentbufftime;
 
     public SpriteRenderer spriteRenderer;
+
+    public static UnityAction OnDeath;
 
     private void Start()
     {
@@ -106,6 +111,20 @@ public class PlayerController : MonoBehaviour
             return false;
         }
         return true;
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Enemy")
+        {
+            OnDeath?.Invoke();
+            
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
 
     }
 }

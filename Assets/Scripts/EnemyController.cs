@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 
 public class EnemyController : MonoBehaviour
 {
@@ -84,6 +85,24 @@ public class EnemyController : MonoBehaviour
 
             }
 
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            // Player entered the enemy area
+            // Do something if needed (e.g., play sound effect, activate chase)      
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            // Player exited the enemy area
+            // Do something if needed (e.g., stop chase, return to patrol)
         }
     }
 }
